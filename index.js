@@ -1,5 +1,6 @@
 const axios = require('axios')
 const shortid = require('shortid')
+const serviceTypes = require("./constants/services");
 
 // import algo-methods
 const { aesEncrypt, aesDecrypt } = require('./algorithms/aes')
@@ -71,4 +72,4 @@ function Kuda (param) {
   return request
 }
 
-module.exports = Kuda
+module.exports={Kuda,serviceTypes}

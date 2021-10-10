@@ -15,7 +15,7 @@ While the repo is not yet on npm, simply clone this repo and run `yarn` or `npm 
 
 ```js
 const fs = require("fs");
-const Kuda = require("./index"); // or require('kuda-node') if it becomes an npm package and that's the name
+const {Kuda,serviceTypes} = require("./index"); // or require('kuda-node') if it becomes an npm package and that's the name
 
 const publicKey = fs.readFileSync("./kuda.public.xml"); // or path to your kuda public key
 const privateKey = fs.readFileSync("./path-to-private-key.xml"); // or path to your kuda kuda private key
@@ -32,7 +32,7 @@ const kuda = Kuda("./index")({
 
 ```js
 kuda({
-  serviceType: "SERVICE_TYPE",
+  serviceType: serviceTypes.SERVICE_TYPE,
   requestRef: "requestReference",
   data: {
     param: value
@@ -48,7 +48,7 @@ const shortid = require("shortid"); // this libarary will generate random id for
 
 kuda(
   {
-    serviceType: "CREATE_VIRTUAL_ACCOUNT",
+    serviceType: serviceTypes.CREATE_VIRTUAL_ACCOUNT,
     requestRef: Math.floor(Math.random() * 1000000000000 + 1), // you can generate your random number your own way. This is just an example.
     data: {
       email: "ajala@obi.com",
@@ -68,7 +68,7 @@ kuda(
 // it can also be called with in an async await fashion like so
 const onboardUser = async(email, phoneNumber, firstName, lastName, trackingReference) => {
   const response = await kuda({
-    serviceType: 'CREATE_VIRTUAL_ACCOUNT',
+    serviceType: serviceTypes.CREATE_VIRTUAL_ACCOUNT,
     requestRef: Number, // like Math.floor(Math.random() * 1000000000000 + 1)
     data: { email, phoneNumber, firstName, lastName, trackingReference }
   })
